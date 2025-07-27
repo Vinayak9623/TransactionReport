@@ -9,15 +9,15 @@ import java.util.List;
 
 public class CsvExportutil {
 
-    public static void writeTransactiontoCsv(List<Transaction> transactions, HttpServletResponse response) throws IOException {
+    public static void writeTransactiontoCsv(List<Transaction> transactions, PrintWriter writer) {
+        writer.println("ID,Merchant Name,Amount,Transaction Date");
 
-        PrintWriter writer=response.getWriter();
-        writer.println("ID, Merchant, Amount,Date");
-
-        for(Transaction txn:transactions){
-
-            writer.printf("%d,%s,%.2f,%s%n",txn.getId(),txn.getMerchantName(),txn.getAmount(),txn.getTransactionDate());
+        for (Transaction transaction : transactions) {
+            writer.printf("%d,%s,%.2f,%s%n",
+                    transaction.getId(),
+                    transaction.getMerchantName(),
+                    transaction.getAmount(),
+                    transaction.getTransactionDate());
         }
-               writer.flush();
     }
 }

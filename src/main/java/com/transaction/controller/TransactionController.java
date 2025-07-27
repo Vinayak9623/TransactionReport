@@ -40,8 +40,8 @@ public class TransactionController {
 
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; filename=transaction_report.csv");
-        List<Transaction> transactionBetweenDate = service.getTransactionBetweenDate(startDate, endDate);
-        CsvExportutil.writeTransactiontoCsv(transactionBetweenDate, (HttpServletResponse) response.getWriter());
+        List<Transaction> transactions = service.getTransactionBetweenDate(startDate, endDate);
+        CsvExportutil.writeTransactiontoCsv(transactions,response.getWriter());
        // CsvExportutil.writeTransactionsToCsv(transactionBetweenDate, response.getWriter());
     }
 
